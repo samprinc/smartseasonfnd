@@ -3,7 +3,7 @@ Built by Sammy Kiprop for the Shamba Records Engineering Internship Assessment.
 
 ## 🚀 Live Demo Links
 - **Frontend (Live):** (https://smartseasonfnd.vercel.app/)
-- **Backend API (Live):** [Insert Render Link Here]
+- **Backend API (Live):** (https://smartseasonbnd.onrender.com)
 
 ## 🔐 Demo Credentials
 - **Admin Login:** username: `admin_user`, password: `password123`
