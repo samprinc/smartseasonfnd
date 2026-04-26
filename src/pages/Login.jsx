@@ -11,25 +11,30 @@ export default function Login() {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        setError('');
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError('');
 
-        try {
-            const res = await api.post('/login/', credentials);
-            login(res.data.access, res.data.role); 
-            
-            // Redirect based on role
-            if (res.data.role === 'admin') {
-                navigate('/admin/dashboard');
-            } else {
-                navigate('/agent/dashboard');
-            }
-        } catch (err) {
-            setError('Invalid username or password. Please try again.');
-            setIsSubmitting(false);
-        }
+    // ✅ CLEAN INPUT HERE
+    const cleanedCredentials = {
+        username: credentials.username.trim(),
+        password: credentials.password.trim(),
     };
+
+    try {
+        const res = await api.post('/login/', cleanedCredentials);
+        login(res.data.access, res.data.role); 
+        
+        if (res.data.role === 'admin') {
+            navigate('/admin/dashboard');
+        } else {
+            navigate('/agent/dashboard');
+        }
+    } catch (err) {
+        setError('Invalid username or password. Please try again.');
+        setIsSubmitting(false);
+    }
+};
 
     return (
         <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
